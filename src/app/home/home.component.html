@@ -35,10 +35,10 @@
   <div class="row form-search">
       <form method="GET" action="" accept-charset="UTF-8" role="form">
           <div class="col-md-10">
-              <input class="form-control" placeholder="Search..." name="search" type="text">
+              <input class="form-control" placeholder="Search..." name="search"  [(ngModel)]='search' type="text">
           </div>
           <div class="col-md-2">
-              <input class="btn btn-block btn-default" type="submit" value="Sumbit">
+              <button class="btn btn-block btn-default" type="button" (click)=postsSearch()>Search</button>
           </div>
       </form>
   </div>

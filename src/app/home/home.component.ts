@@ -16,13 +16,15 @@ export class HomeComponent implements OnInit {
   posts : Array<any>
   time  : Data  
   pageOfItems: Array<any>
+  search :string
+
   constructor(public bServ :BlogServService ,private router:Router ,private modalService: ModalDialogService ,  private viewRef: ViewContainerRef) { }
   
   ngOnInit() {
   
-    this.bServ.readPosts().subscribe(data=>{
+    this.bServ.postsPublished('true').subscribe(data=>{
       this.posts=data
-      console.log(data)
+      console.log(this.posts)
     })
   }
 
@@ -36,6 +38,13 @@ export class HomeComponent implements OnInit {
     this.pageOfItems = pageOfItems;
 }
 
+postsSearch( )
+{
+  this.bServ.postsSearch(this.search).subscribe(data=>
+    {
+      this.posts=data
+    })
+}
 // newComment() {
 //   this.modalService.openDialog(this.viewRef, {
 //     title: 'Some modal title',

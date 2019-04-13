@@ -71,6 +71,20 @@ export class BlogServService {
       return this.http.delete<Ipost>(`${this.urlPosts}/${id}`)
     }  
     
+    postsPublished(published: string ): Observable<Ipost[]>
+    {
+  let httpParams=new HttpParams().set('Published',published)
+  console.log(httpParams.toString())
+  return this.http.get<Ipost[]>(this.urlPosts,{params:httpParams})
+   }
+
+postsSearch(title: string): Observable<Ipost[]>
+{
+  let httpParams=new HttpParams().set('Title',title)
+  console.log(httpParams.toString())
+  return this.http.get<Ipost[]>(this.urlPosts,{params:httpParams})
+
+}
    
   //---------- Tags CRUD -------------
   
@@ -123,4 +137,6 @@ export class BlogServService {
   return this.http.delete<Icomment>(`${this.urlComment}/${id}`)
   
 } 
+
+
 }

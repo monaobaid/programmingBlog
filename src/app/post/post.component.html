@@ -36,17 +36,17 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{post?.Title}}<small>by {{post?.user.username}}</small>
+                    {{post?.Title}} <small>  by {{post?.user.username}}</small>
 
                     <span class="pull-right">
-                        Thu, Jan 10, 2019 7:50 AM
+                        {{post?.createdAt | date:'full' }} 
                     </span>
                 </div>
 
                 <div class="panel-body">
                     <p>{{post?.Body}}</p>
                     <p>
-                        Category: <span class="label label-success">{{post?.categories.Name}}</span> <br>
+                        Category: <span class="label label-success">{{post?.categories?.Name}}</span> <br>
                         Tags:
                         <span  *ngFor="let tag of post?.tags" class="label label-default" style="margin-left: 2px" >  {{tag.Name}}  </span>
                     </p>
@@ -54,30 +54,18 @@
             </div>
 
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" *ngFor='let comment of post?.comments'>
                 <div class="panel-heading">
                     Lacey Gaylord DVM says...
 
-                    <span class="pull-right">3 weeks ago</span>
+                    <span class="pull-right">{{comment.createdAt}}</span>
                 </div>
 
                 <div class="panel-body">
-                    <p>Cupiditate est sed dolores aut odit odit. Qui aut dolorem quia hic. Sint ea id illo impedit
-                        beatae.</p>
+                    <p> {{comment?.Comment}}</p>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Favian Halvorson says...
-
-                    <span class="pull-right">3 weeks ago</span>
-                </div>
-
-                <div class="panel-body">
-                    <p>Aut id nihil nulla quis ut. Quidem ratione quae fugiat rerum sunt. Aut sunt alias dolore
-                        deserunt et deserunt. Repellendus tempore delectus qui qui.</p>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
