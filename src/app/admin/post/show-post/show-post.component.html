@@ -1,0 +1,93 @@
+<div id="app">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- Collapsed Hamburger -->
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#app-navbar-collapse"
+          >
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <!-- Branding Image -->
+         
+        </div>
+
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+          <!-- Left Side Of Navbar -->
+
+          <ul class="nav navbar-nav">
+              <li><a routerLink="/Admin/Categories">Categories</a></li>
+              <li><a routerLink="/Admin/Comments">Comments</a></li>
+              <li><a routerLink="/Admin/Tags">Tags</a></li>
+              <li><a routerLink="/Admin/Users">Users</a></li>
+          </ul>
+
+          <!-- Right Side Of Navbar -->
+          <ul class="nav navbar-nav navbar-right">
+            <!-- Authentication Links -->
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-expanded="false"
+              >
+                Admin <span class="caret"></span>
+              </a>
+
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="/logout">
+                    Logout
+                  </a>
+
+                  <form
+                    id="logout-form"
+                    action="/logout"
+                    method="POST"
+                    style="display: none;"
+                  ></form>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div  class="panel panel-default">
+            <div class="panel-heading">
+                <h2>
+                    {{post?.Title}}
+                    <small>by {{post?.user.username}}</small>
+  
+                    <a routerLink="/Admin/Posts" class="btn btn-default pull-right"
+                      >Go Back</a
+                    >
+                  </h2>
+                </div>
+  
+                <div class="panel-body">
+                  <p>
+                    {{post?.Body}}
+                  </p>
+  
+                  <p><strong>Category: </strong>{{post?.categories.Name}}</p>
+                  <td><strong>Tags: </strong ></td><td *ngFor="let tag of post?.tags" style="padding: 0 0.5em 0.5em 0" > {{tag.Name}}  </td>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

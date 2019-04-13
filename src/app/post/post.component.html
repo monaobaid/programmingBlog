@@ -1,0 +1,83 @@
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Branding Image -->
+            <a class="navbar-brand" href="">
+                Laravel Blog
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <!-- Left Side Of Navbar -->
+
+
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Authentication Links -->
+                <li><a href="">Login</a></li>
+                <li><a href="">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{post?.Title}}<small>by {{post?.user.username}}</small>
+
+                    <span class="pull-right">
+                        Thu, Jan 10, 2019 7:50 AM
+                    </span>
+                </div>
+
+                <div class="panel-body">
+                    <p>{{post?.Body}}</p>
+                    <p>
+                        Category: <span class="label label-success">{{post?.categories.Name}}</span> <br>
+                        Tags:
+                        <span  *ngFor="let tag of post?.tags" class="label label-default" style="margin-left: 2px" >  {{tag.Name}}  </span>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Lacey Gaylord DVM says...
+
+                    <span class="pull-right">3 weeks ago</span>
+                </div>
+
+                <div class="panel-body">
+                    <p>Cupiditate est sed dolores aut odit odit. Qui aut dolorem quia hic. Sint ea id illo impedit
+                        beatae.</p>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Favian Halvorson says...
+
+                    <span class="pull-right">3 weeks ago</span>
+                </div>
+
+                <div class="panel-body">
+                    <p>Aut id nihil nulla quis ut. Quidem ratione quae fugiat rerum sunt. Aut sunt alias dolore
+                        deserunt et deserunt. Repellendus tempore delectus qui qui.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

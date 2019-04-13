@@ -1,0 +1,120 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+      <div class="navbar-header">
+
+          <!-- Collapsed Hamburger -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+              <span class="sr-only">Toggle Navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+
+          <!-- Branding Image -->
+          <a class="navbar-brand"  routerLink="/Home">
+              Laravel Blog
+          </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="app-navbar-collapse">
+          <!-- Left Side Of Navbar -->
+
+          <ul class="nav navbar-nav">
+              <!-- <li><a routerLink="/Admin/Posts">Posts</a></li> -->
+              <li><a routerLink="/Admin/Categories">Categories</a></li>
+              <li><a routerLink="/Admin/Comments">Comments</a></li>
+              <li><a routerLink="/Admin/Tags">Tags</a></li>
+              <li><a routerLink="/Admin/Users">Users</a></li>
+          </ul>
+
+          <!-- Right Side Of Navbar -->
+          <ul class="nav navbar-nav navbar-right">
+              <!-- Authentication Links -->
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      Admin <span class="caret"></span>
+                  </a>
+
+                  <ul class="dropdown-menu" role="menu">
+                      <li>
+                          <a href="logout" onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();">
+                              Logout
+                          </a>
+
+                          <form id="logout-form" action="logout" method="POST" style="display: none;">
+                              <input type="hidden" name="_token" value="32Mxrb2s2QPyv3C1h4iYcbfZBT7PmU7Tfm9koxkk">
+                          </form>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+
+      <div class="col-md-12">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h2>
+                      Posts
+
+                      <a  class="btn btn-default pull-right" routerLink="/Admin/createPost"> 
+                        Create New
+                     </a>
+                  </h2>
+              </div>
+
+              <div class="panel-body table-responsive">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>Title</th>
+                              <th>Body</th>
+                              <th>Author</th>
+                              <th>Category</th>
+                              <th>Tags</th>
+                              <th>Published</th>
+                              <th>Action</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr  *ngFor='let post of pageOfItems'>
+                              <td>{{post.Title}}</td>
+                              <td style="word-break: break-all;">{{post.Body}}</td>
+                              <td>{{post.user?.username}}</td>
+                              <td>{{post.categories?.Name}}</td>
+                              <td><tr *ngFor='let nPost of post.tags'><td>{{nPost.Name}}</td></tr></td> 
+                              <td>{{post.Published}}</td>
+                              <td>
+                                  <button (click)=publishPost(post) *ngIf='!post.Published' style="margin-right:5px" class="btn btn-xs btn-warning">Publish</button>
+                                  <button (click)=unpublishPost(post) *ngIf='post.Published' style="margin-right:5px" class="btn btn-xs btn-warning">Unpublish</button>
+                                  <button (click)=showPost(post._id) style="margin-right:5px" class="btn btn-xs btn-success">Show</button>
+                                  <button (click)=update(post._id) style="margin-right:5px" class="btn btn-xs btn-info">Edit</button>
+                                  <button (click)=delete(post)    class="btn btn-xs btn-danger">Delete</button>
+                              </td>
+                          </tr>
+                          
+                      </tbody>
+                  </table>
+
+                  <!-- <ul class="pagination">
+
+                      <li class="disabled"><span>«</span></li>
+
+
+
+
+
+                      <li class="active"><span>1</span></li>
+                      <li><a href="/posts?page=2">2 </a> </li> <li><a href="/posts?page=3">3 </a> </li> <li><a href="/posts?page=2"
+                                      rel="next">»</a></li>
+                  </ul> -->
+                  <jw-pagination [items]="posts" [pageSize]=5  (changePage)="onChangePage($event)"></jw-pagination>
+          </div>
+      </div>
+  </div>
+</div>
